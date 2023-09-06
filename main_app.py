@@ -186,7 +186,7 @@ def main():
             'What is the datatype of each column ?',
             'Are they missing values ?',
             'Other']
-        query_text = st.selectbox('Select an example query:', question_list, disabled=not uploaded_file)
+        query_text = st.selectbox('Select an example query:', question_list)
         #openai_api_key = st.text_input('OpenAI API Key', type='password', disabled=not (uploaded_file and query_text))
         openai.api_key = st.secrets['OPENAI_API_KEY']
 
