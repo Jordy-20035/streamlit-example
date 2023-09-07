@@ -171,7 +171,8 @@ def main():
 
         # Generate LLM response
         def generate_response(csv_file, input_query):
-            llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
+            llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai_api_key)
+            #llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
             df = load_csv(csv_file)
             # Create Pandas DataFrame Agent
             agent = create_pandas_dataframe_agent(llm, df, verbose=True, agent_type=AgentType.OPENAI_FUNCTIONS)
@@ -187,8 +188,8 @@ def main():
             'Are they missing values ?',
             'Other']
         query_text = st.selectbox('Select an example query:', question_list)
-        #openai_api_key = st.text_input('OpenAI API Key', type='password', disabled=not (uploaded_file and query_text))
-        openai.api_key = st.secrets['OPENAI_API_KEY']
+        openai_api_key = st.text_input('OpenAI API Key', type='password', disabled=not (uploaded_file and query_text))
+        #openai.api_key = st.secrets['OPENAI_API_KEY']
 
         # App logic
         if query_text == 'Other':
@@ -269,8 +270,8 @@ def main():
         pdf_file = st.file_uploader("Upload a PDF file", type="pdf")
 
         #Initializing OpenAI and text spliter        
-        #openai_api_key = st.text_input('OpenAI API Key', type='password')
-        openai.api_key = st.secrets['OPENAI_API_KEY']
+        openai_api_key = st.text_input('OpenAI API Key', type='password')
+        #openai.api_key = st.secrets['OPENAI_API_KEY']
 
         if not openai.api_key.startswith('sk-'):
             st.warning('No OpenAI API key! availaible !', icon='⚠')
@@ -288,7 +289,8 @@ def main():
                     pdf_path = tmp_file.name
                     loader = PyPDFLoader(pdf_path)
                     pages = loader.load_and_split()                    
-                    llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
+                    llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai_api_key)                    
+                    #llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
                     page_number = st.number_input("Enter page number", min_value=1, max_value=len(pages), value=1, step=1)
                     view = pages[page_number - 1]
                     texts = text_splitter.split_text(view.page_content)
@@ -307,7 +309,8 @@ def main():
                         pdf_path = tmp_file.name
                         loader = PyPDFLoader(pdf_path)
                         pages = loader.load_and_split()
-                        llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
+                        llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai_api_key)                                            
+                        #llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
                         start_page = st.number_input("Enter start page", min_value=1, max_value=len(pages), value=1, step=1)
                         end_page = st.number_input("Enter end page", min_value=start_page, max_value=len(pages), value=start_page, step=1)
 
@@ -329,7 +332,8 @@ def main():
                     pdf_path = tmp_file.name
                     loader = PyPDFLoader(pdf_path)
                     pages = loader.load_and_split()
-                    llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
+                    llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai_api_key)                    
+                    #llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
                     combined_content = ''.join([p.page_content for p in pages]) #Get entire page data
                     texts = text_splitter.split_text(combined_content)
                     docs = [Document(page_content=t) for t in texts]
@@ -346,7 +350,8 @@ def main():
                     pdf_path = tmp_file.name
                     loader = PyPDFLoader(pdf_path)
                     pages = loader.load_and_split()                    
-                    llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
+                    llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai_api_key)                    
+                    #llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.2, openai_api_key=openai.api_key)
                     question = st.text_input("Enter your question")
                     combined_content = ''.join([p.page_content for p in pages])
                     texts = text_splitter.split_text(combined_content)
