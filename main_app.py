@@ -194,7 +194,7 @@ def main():
         # App logic
         if query_text == 'Other':
             query_text = st.text_input('Enter your query:', placeholder = 'Enter query here ...')
-        if not openai.api_key.startswith('sk-'):
+        if not openai.api_key:
             st.warning('Please enter your OpenAI API key!', icon='⚠')
         if openai.api_key.startswith('sk-') and (uploaded_file is not None):
             st.header('Output')
