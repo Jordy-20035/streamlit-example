@@ -30,7 +30,7 @@ import torch
 import requests
 from streamlit_lottie import st_lottie
 from streamlit_lottie import st_lottie_spinner
-from langchain.llms import OpenAI, PromptTemplate, LLMChain
+from langchain import OpenAI, PromptTemplate, LLMChain
 from langchain.docstore.document import Document
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains.summarize import load_summarize_chain
