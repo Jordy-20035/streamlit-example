@@ -106,7 +106,7 @@ def main():
                 st.markdown(message["content"])
 
 
-        # Funtion genrating LLM response
+        # Function genrating LLM response
         def generate_response(dialogue_history):
             #Hugging face login
             sign = Login(EMAIL, PASSWD)
@@ -120,7 +120,7 @@ def main():
             # Add user message to chat history
             st.session_state.messages.append({"role": "user", "content": prompt})
             # Append the dialogue history to the user's prompt
-            dialogue_history = "\n".join([message["content"] for message in st.session_state.messages])
+            dialogue_history = ([message["content"] for message in st.session_state.messages])
             # Display user message in chat message container
             with st.chat_message("user"):
                 st.markdown(prompt)
