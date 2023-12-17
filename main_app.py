@@ -196,7 +196,7 @@ def main():
             query_text = st.text_input('Enter your query:', placeholder = 'Enter query here ...')
         if not openai.api_key:
             st.warning('Please enter your OpenAI API key!', icon='⚠')
-        if openai.api_key.startswith('sk-') and (uploaded_file is not None):
+        if (uploaded_file is not None):
             st.header('Output')
             generate_response(uploaded_file, query_text)
 
