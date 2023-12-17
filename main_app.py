@@ -196,7 +196,7 @@ def main():
             query_text = st.text_input('Enter your query:', placeholder = 'Enter query here ...')
         if not openai.api_key:
             st.warning('Please enter your OpenAI API key!', icon='⚠')
-        if (uploaded_file is not None):
+        if not openai.api_key and (uploaded_file is not None):
             st.header('Output')
             generate_response(uploaded_file, query_text)
 
@@ -273,7 +273,7 @@ def main():
         openai_api_key = st.text_input('OpenAI API Key', type='password')
         #openai.api_key = st.secrets['OPENAI_API_KEY']
 
-        if not openai.api_key.startswith('sk-'):
+        if not openai.api_key:
             st.warning('No OpenAI API key! availaible !', icon='⚠')
 
         #User input for page selection
