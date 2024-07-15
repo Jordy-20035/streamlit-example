@@ -18,3 +18,4 @@ tabulate
 sentencepiece
 sentence_transformers
 sentence-transformers
+langchain-community
