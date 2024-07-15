@@ -90,11 +90,13 @@ def main():
         - Stick with me until then to be aware of everything before everyone 💡 ! 
          ''')
             
+
+
         EMAIL = st.secrets["DB_EMAIL"]
         PASSWD = st.secrets["DB_PASS"]
         COOKIE_STORE_PATH = "./usercookies"
 
-
+        
         # Store LLM Generated responses
         if "messages" not in st.session_state:
             st.session_state.messages = [{"role": "assistant", "content": "Hey There !"}]
